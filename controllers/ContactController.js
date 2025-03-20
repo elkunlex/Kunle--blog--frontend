@@ -25,10 +25,16 @@ const createContact =  async (req, res) => {
     }
 };
 
-const fetchAllContact = (req, res) => {
-    // Your logic here
-    res.status(200).json({ message: "Fetched all contacts" });
+const fetchAllContact = async (req, res) => {
+    try {
+        // Fetch all contacts from database
+        const contacts = await Contact.find();  // Use correct model name
+        res.status(200).json({ message: "All contacts fetched", data: contacts });
+    } catch (error) {
+        res.status(500).json({ error: error.message });  // Improved error handling
+    }
 };
+
 
 module.exports = { createContact, fetchAllContact };
 
