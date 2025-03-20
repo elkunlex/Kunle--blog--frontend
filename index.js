@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const postRouters = require("./routes/postRoutes.js");
-
+const contactRouters = require("./routes/ContactRoute.js");
 const app = express()
 
 //middleware
@@ -21,6 +21,7 @@ mongoose.connect(mongourl)
 
                     //routes
                     app.use("/posts", postRouters)
+                    app.use("/contact", contactRouters)
 
                     app.listen(port, () =>{
                         console.log(`server is running on http://localhost:${port}`);
